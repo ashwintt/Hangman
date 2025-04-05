@@ -1,19 +1,16 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 abstract class Mode {
     private HashMap<String, String> words = new HashMap<>();
     private int attempts;
     private final String mode;
-    protected String word;
 
-    Mode(String mode) {
+    Mode(String mode, int attempts) {
         this.mode = mode;
+        this.attempts = attempts;
     }
 
     // Used to get the words from the words.txt and
@@ -41,18 +38,16 @@ abstract class Mode {
                 iterator.remove();
             }
         }
-
-//        //        Test
-//        for (String key : words.keySet()) {
-//            System.out.println(key + " " + words.get(key));
-//        }
     }
 
     public void attempted() {
         attempts--;
     }
 
+    // Getting a random word from the list of words
     public String randomWord() {
-        //    TODO Make the function get a random word from filtered words
+        Random random = new Random();
+        ArrayList<String> keys = new ArrayList<>(words.keySet());
+        return keys.get(random.nextInt(keys.size()));
     }
 }
