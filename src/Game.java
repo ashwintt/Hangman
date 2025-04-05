@@ -1,10 +1,5 @@
-public class Game {
-    private String[] words;
-    private String mode;
+interface Game {
+    void lose();
 
-    public void setMode(String mode) {
-        this.mode = mode;
-    }
-
-    public void setWords(String[] words) {}
+    void win();
 }
